@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Admin\Resources\RoleUserResource\RelationManagers;
+namespace App\Filament\Admin\Resources\RegionResource\RelationManagers;
 
-use App\Models\Role;
+use App\Models\Region;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -13,17 +13,17 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 use Filament\Forms\Components\Select;
 
-class RolesRelationManager extends RelationManager
+class RegionRelationManager extends RelationManager
 {
-    protected static string $relationship = 'role';
+    protected static string $relationship = 'region';
 
     public function form(Form $form): Form
     {
         return $form
             ->schema([
-                Select::make('role.rolename')
-                    ->label('Roles')
-                    ->options(Role::all()->pluck('rolename', 'id'))
+                Select::make('region.region')
+                    ->label('Regiones')
+                    ->options(Region::all()->pluck('region', 'id'))
                     ->searchable()
             ]);
     }
@@ -31,9 +31,9 @@ class RolesRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('rolename')
+            ->recordTitleAttribute('region')
             ->columns([
-                Tables\Columns\TextColumn::make('rolename'),
+                Tables\Columns\TextColumn::make('region'),
             ])
             ->filters([
                 //
